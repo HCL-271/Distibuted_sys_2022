@@ -51,7 +51,7 @@ Matrix Multiply(Matrix& First, Matrix& Second, size_t number_of_threads) {
 	}
 
 	Matrix res(rank, vector<double>(rank, 0));
-
+//https://thispointer.com/c11-how-to-create-vector-of-thread-objects/
 	std::vector<std::thread> thread;
 
 	for (size_t i = 0; i < number_of_threads; i++) {
