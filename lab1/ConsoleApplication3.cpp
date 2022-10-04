@@ -69,6 +69,7 @@ Matrix Multiply(Matrix& First, Matrix& Second, size_t number_of_threads) {
 	for (size_t i = 0; i < number_of_threads; i++) {
 
 		thread[i].join();
+		//Блокирует вызывающий поток до завершения потока, представленного этим экземпляром.
 	}
 
 	return res;
