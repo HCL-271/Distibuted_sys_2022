@@ -1,8 +1,7 @@
-// No copyright. Vladislav Aleinik 2021
-//======================================
+
 // Multithreaded Programming
 // Lab#02: Spin-lock Benchmarking
-//======================================
+
 
 #include "SpinLockBenchmarks.h"
 
