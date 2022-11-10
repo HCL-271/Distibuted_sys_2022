@@ -1,8 +1,4 @@
-// No copyright. Vladislav Aleinik 2021
-//======================================
-// Multithreaded Programming
-// Lab#02: Spin-lock Benchmarking
-//======================================
+
 #ifndef SPIN_LOCKS_HPP_INCLUDED
 #define SPIN_LOCKS_HPP_INCLUDED
 
