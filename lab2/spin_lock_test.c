@@ -1,44 +1,32 @@
-// Beerware license. Vladislav Aleinik 2021
-//======================================
-// Multithreaded Programming
-// Lab#02: Spin-lock Benchmarking
-//======================================
-
 #include "SpinLockBenchmarks.h"
-
-//@ Include your header here: 
 #include "SpinLocks.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 
-//-----------
 // TAS lock 
-//-----------
 
 struct TAS_Lock TAS_test;
 
 void TAS_test_init()
 {
-	//@ Put your TAS lock initialisation here: 
+	
 	TAS_init(&TAS_test);
 }
 
 void TAS_test_acquire()
 {
-	//@ Put your TAS lock acquisition here:
+	
 	TAS_acquire(&TAS_test);
 }
 
 void TAS_test_release()
 {
-	//@ Put your TAS lock release here:
+	
 	TAS_release(&TAS_test);
 }
 
-//------------
+
 // TTAS lock 
-//------------
 
 struct TTAS_Lock TTAS_test;
 
@@ -78,9 +66,9 @@ void ticket_test_release()
 	TicketLock_release(&ticket_test);
 }
 
-//------
+
 // Main 
-//------
+
 
 #define NUM_LOCKS 3
 
