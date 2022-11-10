@@ -1,8 +1,7 @@
-// No copyright. Vladislav Aleinik 2021
-//======================================
+
 // Multithreaded Programming
-// Lab#02: Spin-lock Benchmarking
-//======================================
+// Lab2: Spin-lock Benchmarking
+
 
 #include "SpinLocks.h"
 
@@ -12,9 +11,9 @@
 #include <time.h>
 #include <sched.h>
 
-//----------
+
 // TAS lock 
-//----------
+
 
 const unsigned TAS_CYCLES_TO_SPIN          =    10;
 const unsigned TAS_MIN_BACKOFF_NANOSECONDS =  1000;
