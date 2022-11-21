@@ -71,6 +71,9 @@ void* one_thread_job(void* args)
 	for (size_t acqisition = 0; acqisition < common_args->num_lock_acuisitions; ++acqisition)
 	{
 		common_args->acquire_lock();
+		/*
+		Hard to say without actual code, but the naming suggests using lock of some kind, most likely to guarantee exclusive access to a resource / memory.
+		*/
 
 		// Critical section:
 		for (size_t cycle = 0; cycle < common_args->num_cycles_per_thread; ++cycle)
