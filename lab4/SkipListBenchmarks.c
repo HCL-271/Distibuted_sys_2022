@@ -17,8 +17,10 @@ const int                CORRECTNESS_NUM_ELEMENTS = 100;
 const int         INSERT_PERFORMANCE_NUM_ELEMENTS = 10000;
 const int         REMOVE_PERFORMANCE_NUM_ELEMENTS = 10000;
 const int         SEARCH_PERFORMANCE_NUM_ELEMENTS = 10000;
-const int          MIXED_PERFORMANCE_NUM_ELEMENTS = 3333;
-const int AGGRESIVE_PERFORMANCE_TEST_NUM_CYCLES   = 100;
+const int          READS = 9000;
+const int          DELETS = 500;
+const int          INSERTS = 500;
+const int 	HALF_TO_HALF_TEST   = 100;
 
 //--------
 // Colors 
@@ -350,10 +352,9 @@ void* mixed_performance_thread_job(void* args)
 
 	START_TIME_MEASUREMENT();
 
-	INSERT_ELEMENTS(MIXED_PERFORMANCE_NUM_ELEMENTS, common_args->num_threads, thread_args->thread_i);
-	SEARCH_ELEMENTS(MIXED_PERFORMANCE_NUM_ELEMENTS, common_args->num_threads, thread_args->thread_i);
-	REMOVE_ELEMENTS(MIXED_PERFORMANCE_NUM_ELEMENTS, common_args->num_threads, thread_args->thread_i);
-
+	INSERT_ELEMENTS(INSERTS, common_args->num_threads, thread_args->thread_i);
+	SEARCH_ELEMENTS(READS, common_args->num_threads, thread_args->thread_i);
+	REMOVE_ELEMENTS(DELETS, common_args->num_threads, thread_args->thread_i);
 	FINISH_TIME_MEASUREMENT();
 
 	return NULL;
@@ -375,25 +376,25 @@ void* aggressive_performance_thread_job(void* args)
 
 	START_TIME_MEASUREMENT();
 
-	for (int cycle = 0; cycle < AGGRESIVE_PERFORMANCE_TEST_NUM_CYCLES; ++cycle)
+	for (int cycle = 0; cycle < HALF_TO_HALF_TEST; ++cycle)
 	{
-		for (unsigned i = 0; i < 90; ++i)
+		for (unsigned i = 0; i < 50; ++i)
 		{
-			Key_t   key   = common_args->num_threads * (AGGRESIVE_PERFORMANCE_TEST_NUM_CYCLES * cycle + thread_args->thread_i) + i;
+			Key_t   key   = common_args->num_threads * (HALF_TO_HALF_TEST * cycle + thread_args->thread_i) + i;
 			Value_t value = key;
 
 			skiplist_insert(common_args->skiplist, key, value);
 		}
 
-		for (unsigned i = 0; i < 9; ++i)
+		for (unsigned i = 0; i < 49; ++i)
 		{
-			Key_t   key   = common_args->num_threads * (AGGRESIVE_PERFORMANCE_TEST_NUM_CYCLES * cycle + thread_args->thread_i + 1) + i;
+			Key_t   key   = common_args->num_threads * (HALF_TO_HALF_TEST * cycle + thread_args->thread_i + 1) + i;
 			Value_t value = 0;
 
 			skiplist_search(common_args->skiplist, key, &value);
 		}
 
-		Key_t to_remove = common_args->num_threads * (AGGRESIVE_PERFORMANCE_TEST_NUM_CYCLES * cycle + thread_args->thread_i);
+		Key_t to_remove = common_args->num_threads * (HALF_TO_HALF_TEST * cycle + thread_args->thread_i);
 		skiplist_remove(common_args->skiplist, to_remove);
 	}   
 
